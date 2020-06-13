@@ -1,0 +1,14 @@
+.signupform {
+  box-sizing: border-box;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  border-radius: 23px;
+  border-color: rgb(241, 236, 232);
+  width: 500px;
+}
+label {
+  color: cornsilk;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: 900;
+  font-display: rgb(212, 48, 7);
+}
