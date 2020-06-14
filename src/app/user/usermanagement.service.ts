@@ -1,9 +1,30 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsermanagementService {
+  //initialize
+  public baseUrl = 'https://chatapi.edwisor.com/api/v1/users';
+  public authToken =
+    'YTczZjFhODdlZWU5ODg1Mzg5MzNkNWQ3M2UxZWU2OGI4YWI3YTE4ODNkZTQwZDBiZWI4MDc0NjA2ODU4NGE2ZTExNTFjZjRmYjBjNmZmNmE3M2NmNTZiMDBjNGE3N2RlZDI5MjI1Njg4NzE3ZmMxY2VlZmEwNGFkYjg2YWQ4NDRhYQ==';
 
-  constructor() { }
+  constructor(private _http: HttpClient) {}
+  //handle exceptions
+  public handleError(error: HttpErrorResponse) {
+    console.log('Http error', error.message);
+    return Observable.throw(error.message);
+  }
+  public signUpRoute(newUser): any {
+    console.log('signup api call', newUser);
+    console.log('url', `${this.baseUrl}/signup?apiKey=${this.authToken}`);
+    let signUpResponse = this._http.post(
+      `${this.baseUrl}/signup?authToken=${this.authToken}`,
+      newUser
+    );
+    return signUpResponse;
+  }
 }
