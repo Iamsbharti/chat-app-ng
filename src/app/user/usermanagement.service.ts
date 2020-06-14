@@ -20,8 +20,8 @@ export class UsermanagementService {
   }
   //signup
   public signUpRoute(newUser): any {
-    console.log('signup api call', newUser);
-    console.log('url', `${this.baseUrl}/signup?apiKey=${this.authToken}`);
+    //console.log('signup api call', newUser);
+    //console.log('url', `${this.baseUrl}/signup?apiKey=${this.authToken}`);
     let signUpResponse = this._http.post(
       `${this.baseUrl}/signup?authToken=${this.authToken}`,
       newUser
@@ -30,7 +30,7 @@ export class UsermanagementService {
   }
   //login
   public loginRoute(loginInfo): any {
-    console.log(loginInfo);
+    //console.log(loginInfo);
     let loginResponse = this._http.post(
       `${this.baseUrl}/login?authToken=${this.authToken}`,
       loginInfo
