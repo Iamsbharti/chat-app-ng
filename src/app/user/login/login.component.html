@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="loginpage">
       <img src="/assets/icons8-login-64.png" />
-      <form #loginForm="ngForm">
+      <form #loginForm="ngForm" (ngSubmit)="loginUser()">
         <div class="form-group">
           <label for="email">Email</label>
           <input
@@ -36,10 +36,15 @@
           >
             password is required
           </div>
-          <button class="btn btn-success">Login</button>
+          <button class="btn btn-success" [disabled]="!loginForm.form.valid">
+            Login
+          </button>
           <button class="btn btn-info" style="margin-left: 20px;">
             Cancel
           </button>
+          <div class="message">
+            {{ loginResponse }}
+          </div>
         </div>
       </form>
     </div>

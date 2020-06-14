@@ -18,6 +18,7 @@ export class UsermanagementService {
     console.log('Http error', error.message);
     return Observable.throw(error.message);
   }
+  //signup
   public signUpRoute(newUser): any {
     console.log('signup api call', newUser);
     console.log('url', `${this.baseUrl}/signup?apiKey=${this.authToken}`);
@@ -26,5 +27,14 @@ export class UsermanagementService {
       newUser
     );
     return signUpResponse;
+  }
+  //login
+  public loginRoute(loginInfo): any {
+    console.log(loginInfo);
+    let loginResponse = this._http.post(
+      `${this.baseUrl}/login?authToken=${this.authToken}`,
+      loginInfo
+    );
+    return loginResponse;
   }
 }

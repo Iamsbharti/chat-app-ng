@@ -17,3 +17,8 @@ label {
   color: cornsilk;
   font-weight: bold;
 }
+.message {
+  margin-top: 20px;
+  color: gold;
+  font-weight: bolder;
+}
