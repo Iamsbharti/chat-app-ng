@@ -15,7 +15,15 @@
             type="text"
             [(ngModel)]="firstname"
             name="First Name"
+            required
+            #_first="ngModel"
           />
+        </div>
+        <div
+          [hidden]="_first.valid || _first.pristine"
+          class="alert alert-danger"
+        >
+          First Name is Required
         </div>
         <div class="form-group">
           <label for="lastname">Last Name</label>
@@ -24,7 +32,15 @@
             [(ngModel)]="lastname"
             type="text"
             name="lastname"
+            required
+            #_last="ngModel"
           />
+        </div>
+        <div
+          [hidden]="_last.valid || _last.pristine"
+          class="alert alert-danger"
+        >
+          Last Name is Required
         </div>
         <div class="form-group">
           <label for="email">Email</label>
@@ -33,7 +49,15 @@
             [(ngModel)]="email"
             type="text"
             name="email"
+            required
+            #_email="ngModel"
           />
+        </div>
+        <div
+          [hidden]="_email.valid || _email.pristine"
+          class="alert alert-danger"
+        >
+          Email is Required
         </div>
         <div class="form-group">
           <label for="mobile">Mobile</label>
@@ -42,7 +66,15 @@
             [(ngModel)]="mobile"
             type="text"
             name="mobile"
+            required
+            #_mobile="ngModel"
           />
+        </div>
+        <div
+          [hidden]="_mobile.valid || _mobile.pristine"
+          class="alert alert-danger"
+        >
+          Mobile is Required
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -51,7 +83,12 @@
             [(ngModel)]="password"
             type="password"
             name="password"
+            required
+            #_pwd="ngModel"
           />
+        </div>
+        <div [hidden]="_pwd.valid || _pwd.pristine" class="alert alert-danger">
+          Password is Required
         </div>
         <div class="form-group">
           <label for="apiKey">API Key</label>
@@ -60,9 +97,16 @@
             [(ngModel)]="apiKey"
             type="text"
             name="apiKey"
+            required
+            #_key="ngModel"
           />
         </div>
-        <button class="btn btn-primary">SignUp</button>
+        <div [hidden]="_key.valid || _key.pristine" class="alert alert-danger">
+          API Key Is Required
+        </div>
+        <button class="btn btn-primary" [disabled]="!signUpForm.form.valid">
+          SignUp
+        </button>
         <button
           class="btn btn-danger"
           style="margin-left: 30px; float: inline-end;"
