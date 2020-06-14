@@ -37,4 +37,12 @@ export class UsermanagementService {
     );
     return loginResponse;
   }
+  //set Authenticated user info
+  public setAuthUserInfo(data): any {
+    localStorage.setItem('userInfo', JSON.stringify(data));
+  }
+  //get Authenticated user info
+  public getAuthUserInfo(): any {
+    return JSON.parse(localStorage.getItem('userInfo'));
+  }
 }

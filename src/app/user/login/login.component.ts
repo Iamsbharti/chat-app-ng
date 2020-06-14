@@ -3,6 +3,7 @@ import { UsermanagementService } from '../usermanagement.service';
 import { Routes, Router } from '@angular/router';
 import { Toaster, ToastConfig } from 'ngx-toast-notifications';
 import { Cookie } from 'ng2-cookies';
+import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -33,11 +34,15 @@ export class LoginComponent implements OnInit {
         this.loginResponse = response.message;
 
         //set cookies
-        let { email, userId } = response.data.userDetails;
+        let { email, userId, firstName, lastName } = response.data.userDetails;
         let { authToken } = response.data;
         Cookie.set('email', email);
         Cookie.set('userId', userId);
         Cookie.set('authToken', authToken);
+        Cookie.set('name', firstName + ' ' + lastName);
+
+        //set in localstorage
+        this.userService.setAuthUserInfo(response.data.userDetails);
 
         //invoke toaster
         this.toaster.open({ text: response.message, type: 'success' });
