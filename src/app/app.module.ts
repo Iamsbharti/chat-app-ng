@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { UserModule } from './user/user.module';
 import { ChatModule } from './chat/chat.module';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastNotificationsModule } from 'ngx-toast-notifications';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +17,13 @@ import { SharedModule } from './shared/shared.module';
     UserModule,
     ChatModule,
     SharedModule,
+    BrowserAnimationsModule,
+    ToastNotificationsModule.forRoot({
+      duration: 2000,
+      type: 'primary',
+      autoClose: true,
+      position: 'top-right',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
