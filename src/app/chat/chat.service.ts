@@ -33,8 +33,8 @@ export class ChatService {
    */
   public getOnlineUsersList = () => {
     return Observable.create((observer) => {
-      this.socket.on('online-user-list', (data) => {
-        observer.next(data);
+      this.socket.on('online-user-list', (userList) => {
+        observer.next(userList);
       });
     });
   };
@@ -47,5 +47,12 @@ export class ChatService {
         observer.next();
       });
     });
+  };
+  //emitt event
+  /**
+   * Emitt set-user event and send authToken
+   */
+  public setUserEvent = (authToken) => {
+    this.socket.emit('set-user', authToken);
   };
 }
