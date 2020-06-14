@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 export class ChatBoxComponent implements OnInit {
   public userInfo: object;
   public authToken: string;
-
+  public disconnectedSocket: boolean;
+  public onlineUsers: any;
   constructor(
     private socketService: ChatService,
     private userServices: UsermanagementService,
@@ -29,10 +30,7 @@ export class ChatBoxComponent implements OnInit {
     this.verifyUserAuthentication();
     this.getOnlineUsersList();
   }
-  public getOnlineUsersList() {
-    throw new Error('Method not implemented.');
-  }
-  public checkAuthStatus() {
+  public checkAuthStatus(): any {
     if (
       this.authToken === '' ||
       this.authToken === null ||
@@ -44,7 +42,27 @@ export class ChatBoxComponent implements OnInit {
       return true;
     }
   }
-  public verifyUserAuthentication() {
-    throw new Error('Method not implemented.');
+  public verifyUserAuthentication(): any {
+    this.socketService.verifyUser().subscribe((data) => {
+      this.disconnectedSocket = false;
+      this.socketService.setUserEvent(this.authToken);
+      this.getOnlineUsersList();
+    });
+  }
+  public getOnlineUsersList(): any {
+    this.socketService.getOnlineUsersList().subscribe((usersList) => {
+      this.onlineUsers = [];
+      console.log(usersList);
+      for (let user in usersList) {
+        let temp = {
+          userId: user,
+          name: usersList[user],
+          unread: 0,
+          chatting: 0,
+        };
+        this.onlineUsers.push(temp);
+      }
+      console.log('online users', this, this.onlineUsers);
+    });
   }
 }

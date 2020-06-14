@@ -1,1 +1,5 @@
-<p>{{ message }}</p>
+<p>User: {{ userInfo.firstName }}</p>
+<h1>Online users</h1>
+<ul *ngFor="let user of onlineUsers">
+  <li>{{ user.name }}</li>
+</ul>
