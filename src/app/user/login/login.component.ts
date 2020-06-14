@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsermanagementService } from '../usermanagement.service';
 import { Routes, Router } from '@angular/router';
 import { Toaster, ToastConfig } from 'ngx-toast-notifications';
+import { Cookie } from 'ng2-cookies';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,10 +27,22 @@ export class LoginComponent implements OnInit {
       password: this.password,
     };
     this.userService.loginRoute(userInfo).subscribe(
-      (data) => {
+      (response) => {
         //console.log(data);
-        this.loginResponse = data.message;
-        this.toaster.open({ text: data.message, type: 'success' });
+        //set display message
+        this.loginResponse = response.message;
+
+        //set cookies
+        let { email, userId } = response.data.userDetails;
+        let { authToken } = response.data;
+        Cookie.set('email', email);
+        Cookie.set('userId', userId);
+        Cookie.set('authToken', authToken);
+
+        //invoke toaster
+        this.toaster.open({ text: response.message, type: 'success' });
+
+        //redirect post login
         setTimeout(() => this._Router.navigate(['/chat']), 3000);
       },
       (error) => {
