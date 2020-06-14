@@ -26,10 +26,10 @@ export class SignupComponent implements OnInit {
   //call signup user service
   public signUpUser(): any {
     let newUser = {
-      firstname: this.firstname,
-      lastname: this.lastname,
+      firstName: this.firstname,
+      lastName: this.lastname,
       email: this.email,
-      mobile: this.mobile,
+      mobileNumber: this.mobile,
       password: this.password,
       apiKey: this.apiKey,
     };
