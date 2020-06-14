@@ -17,15 +17,13 @@ export class ChatBoxComponent implements OnInit {
     private socketService: ChatService,
     private userServices: UsermanagementService,
     private _router: Router
-  ) {
-    console.log('chat');
-  }
+  ) {}
 
   ngOnInit(): void {
     //get auth user's info from cookies and localstorage
     this.userInfo = this.userServices.getAuthUserInfo();
     this.authToken = Cookie.get('authToken');
-    console.log(this.userInfo);
+    //console.log(this.userInfo);
     this.checkAuthStatus();
     this.verifyUserAuthentication();
     this.getOnlineUsersList();
@@ -52,7 +50,7 @@ export class ChatBoxComponent implements OnInit {
   public getOnlineUsersList(): any {
     this.socketService.getOnlineUsersList().subscribe((usersList) => {
       this.onlineUsers = [];
-      console.log(usersList);
+      //console.log(usersList);
       for (let user in usersList) {
         let temp = {
           userId: user,
@@ -62,7 +60,7 @@ export class ChatBoxComponent implements OnInit {
         };
         this.onlineUsers.push(temp);
       }
-      console.log('online users', this, this.onlineUsers);
+      //console.log('online users', this, this.onlineUsers);
     });
   }
 }
