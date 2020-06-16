@@ -3,6 +3,7 @@ import { ChatService } from '../chat.service';
 import { Cookie } from 'ng2-cookies';
 import { UsermanagementService } from 'src/app/user/usermanagement.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-chat-box',
   templateUrl: './chat-box.component.html',
@@ -13,6 +14,9 @@ export class ChatBoxComponent implements OnInit {
   public authToken: string;
   public disconnectedSocket: boolean;
   public onlineUsers: any;
+  public showOnlineUsers = false;
+  public firstName: string;
+  public lastName: string;
   constructor(
     private socketService: ChatService,
     private userServices: UsermanagementService,
@@ -23,7 +27,10 @@ export class ChatBoxComponent implements OnInit {
     //get auth user's info from cookies and localstorage
     this.userInfo = this.userServices.getAuthUserInfo();
     this.authToken = Cookie.get('authToken');
-    //console.log(this.userInfo);
+    console.log(this.userInfo);
+    this.firstName = this.userInfo['firstName'];
+    this.lastName = this.userInfo['lastName'];
+    this.showOnlineUsers = false;
     this.checkAuthStatus();
     this.verifyUserAuthentication();
     this.getOnlineUsersList();
@@ -62,5 +69,8 @@ export class ChatBoxComponent implements OnInit {
       }
       console.log('online users', this.onlineUsers);
     });
+  }
+  public toggleShow(): any {
+    this.showOnlineUsers = this.showOnlineUsers ? false : true;
   }
 }

@@ -12,16 +12,24 @@
           class="figure-caption badge badge-success"
           style="margin-left: 25px;"
         >
-          {{ userInfo.firstName }}
+          {{ firstName }}
         </figcaption>
       </figure>
     </div>
-    <button type="button" class="btn btn-primary" style="margin-top: 20px;">
+    <button
+      type="button"
+      class="btn btn-primary"
+      style="margin-top: 20px;"
+      *ngIf="onlineUsers"
+      (click)="toggleShow()"
+    >
       Online Users
       <span class="badge badge-light">{{ onlineUsers.length }}</span>
     </button>
-    <ul *ngFor="let user of onlineUsers">
-      <li>{{ user.name }}</li>
-    </ul>
+    <div [hidden]="!showOnlineUsers">
+      <ul *ngFor="let user of onlineUsers">
+        <li>{{ user.name }}</li>
+      </ul>
+    </div>
   </div>
 </div>
