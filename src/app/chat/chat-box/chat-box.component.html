@@ -27,8 +27,10 @@
       <span class="badge badge-light">{{ onlineUsers.length }}</span>
     </button>
     <div class="userlist" [hidden]="!showOnlineUsers">
-      <ul *ngFor="let user of onlineUsers">
-        <li class="badge badge-dark">{{ user.name }}</li>
+      <ul class="list-group" *ngFor="let user of onlineUsers">
+        <li class="list-group-item bg-transparent badge badge-success">
+          {{ user.name }}
+        </li>
       </ul>
     </div>
   </div>
