@@ -1,5 +1,27 @@
-<p>User: {{ userInfo.firstName }}</p>
-<h1>Online users</h1>
-<ul *ngFor="let user of onlineUsers">
-  <li>{{ user.name }}</li>
-</ul>
+<div class="container">
+  <div class="container-fluid">
+    <div class="userinfo">
+      <figure class="figure">
+        <img
+          src="/assets/icons8-user-64.png"
+          class="figure-img img-fluid rounded"
+          alt="..."
+          style="width: 45px; height: 45px;"
+        />
+        <figcaption
+          class="figure-caption badge badge-success"
+          style="margin-left: 25px;"
+        >
+          {{ userInfo.firstName }}
+        </figcaption>
+      </figure>
+    </div>
+    <button type="button" class="btn btn-primary" style="margin-top: 20px;">
+      Online Users
+      <span class="badge badge-light">{{ onlineUsers.length }}</span>
+    </button>
+    <ul *ngFor="let user of onlineUsers">
+      <li>{{ user.name }}</li>
+    </ul>
+  </div>
+</div>

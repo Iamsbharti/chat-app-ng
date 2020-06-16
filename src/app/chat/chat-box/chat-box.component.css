@@ -1,0 +1,8 @@
+.userinfo {
+  box-sizing: border-box;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.75);
+  border-color: rgb(241, 236, 232);
+  width: 300px;
+}

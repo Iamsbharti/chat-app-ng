@@ -60,7 +60,7 @@ export class ChatBoxComponent implements OnInit {
         };
         this.onlineUsers.push(temp);
       }
-      //console.log('online users', this, this.onlineUsers);
+      console.log('online users', this.onlineUsers);
     });
   }
 }
