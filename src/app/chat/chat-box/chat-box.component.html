@@ -26,9 +26,9 @@
       Online Users
       <span class="badge badge-light">{{ onlineUsers.length }}</span>
     </button>
-    <div [hidden]="!showOnlineUsers">
+    <div class="userlist" [hidden]="!showOnlineUsers">
       <ul *ngFor="let user of onlineUsers">
-        <li>{{ user.name }}</li>
+        <li class="badge badge-dark">{{ user.name }}</li>
       </ul>
     </div>
   </div>

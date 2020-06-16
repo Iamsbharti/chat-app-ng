@@ -27,7 +27,7 @@ export class ChatBoxComponent implements OnInit {
     //get auth user's info from cookies and localstorage
     this.userInfo = this.userServices.getAuthUserInfo();
     this.authToken = Cookie.get('authToken');
-    console.log(this.userInfo);
+    //console.log(this.userInfo);
     this.firstName = this.userInfo['firstName'];
     this.lastName = this.userInfo['lastName'];
     this.showOnlineUsers = false;

@@ -6,3 +6,16 @@
   border-color: rgb(241, 236, 232);
   width: 300px;
 }
+.userlist {
+  margin-top: 20px;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0.5, 0.7, 0.9);
+  border-color: rgb(241, 237, 8);
+  width: 300px;
+}
+li {
+  list-style: none;
+  margin-right: 20px;
+}
