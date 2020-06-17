@@ -28,7 +28,7 @@
     </button>
     <div class="userlist" [hidden]="!showOnlineUsers">
       <ul class="list-group" *ngFor="let user of onlineUsers">
-        <li class="list-group-item bg-transparent badge badge-success">
+        <li class="list-group-item badge badge-success">
           {{ user.name }}
         </li>
       </ul>

@@ -65,7 +65,7 @@ export class ChatBoxComponent implements OnInit {
           unread: 0,
           chatting: 0,
         };
-        this.onlineUsers.push(temp);
+        user !== this.userInfo['userId'] ? this.onlineUsers.push(temp) : '';
       }
       console.log('online users', this.onlineUsers);
     });
