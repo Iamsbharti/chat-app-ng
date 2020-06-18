@@ -10,13 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./chat-box.component.css'],
 })
 export class ChatBoxComponent implements OnInit {
-  public userInfo: object;
+  public userInfo: any;
   public authToken: string;
   public disconnectedSocket: boolean;
   public onlineUsers: any;
   public showOnlineUsers = false;
-  public firstName: string;
-  public lastName: string;
+  public messageText: string;
   constructor(
     private socketService: ChatService,
     private userServices: UsermanagementService,
@@ -27,14 +26,13 @@ export class ChatBoxComponent implements OnInit {
     //get auth user's info from cookies and localstorage
     this.userInfo = this.userServices.getAuthUserInfo();
     this.authToken = Cookie.get('authToken');
-    //console.log(this.userInfo);
-    this.firstName = this.userInfo['firstName'];
-    this.lastName = this.userInfo['lastName'];
+
     this.showOnlineUsers = false;
     this.checkAuthStatus();
     this.verifyUserAuthentication();
     this.getOnlineUsersList();
   }
+  //check user's login status
   public checkAuthStatus(): any {
     if (
       this.authToken === '' ||
@@ -47,6 +45,7 @@ export class ChatBoxComponent implements OnInit {
       return true;
     }
   }
+  //verify the user with authToken
   public verifyUserAuthentication(): any {
     this.socketService.verifyUser().subscribe((data) => {
       this.disconnectedSocket = false;
@@ -54,6 +53,7 @@ export class ChatBoxComponent implements OnInit {
       this.getOnlineUsersList();
     });
   }
+  //get the onlineuserList
   public getOnlineUsersList(): any {
     this.socketService.getOnlineUsersList().subscribe((usersList) => {
       this.onlineUsers = [];
@@ -67,10 +67,30 @@ export class ChatBoxComponent implements OnInit {
         };
         user !== this.userInfo['userId'] ? this.onlineUsers.push(temp) : '';
       }
-      console.log('online users', this.onlineUsers);
+      //console.log('online users', this.onlineUsers);
     });
   }
   public toggleShow(): any {
     this.showOnlineUsers = this.showOnlineUsers ? false : true;
   }
+  //send message on enter press
+  public sendChatMessage: any = (event: any) => {
+    if (event.keyCode === 13) {
+      this.sendMessage();
+    }
+  };
+  public sendMessage: any = () => {
+    let { firstName, lastName, userId } = this.userInfo;
+    if (this.messageText) {
+      let messageObject = {
+        sendName: firstName + ' ' + lastName,
+        senderId: userId,
+        receiverName: '',
+        receiverId: '',
+        message: this.messageText,
+        createdOn: new Date(),
+      };
+      this.socketService.sendChatMessage(messageObject);
+    }
+  };
 }
