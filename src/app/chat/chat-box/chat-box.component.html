@@ -28,9 +28,9 @@
     </button>
     <div class="userlist" [hidden]="!showOnlineUsers">
       <ul class="list-group" *ngFor="let user of onlineUsers">
-        <li>
-          <Button class="btn btn-dark bg-transparent">{{ user.name }}</Button>
-        </li>
+        <div class="usersDiv">
+          <span class="username">{{ user.name }}</span>
+        </div>
       </ul>
     </div>
   </div>
