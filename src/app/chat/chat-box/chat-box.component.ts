@@ -22,7 +22,7 @@ export class ChatBoxComponent implements OnInit {
   public recieverId: string;
   public recieverName: string;
   public userList = [];
-  public pageValue: Number;
+  public pageValue: any;
   constructor(
     private socketService: ChatService,
     private userServices: UsermanagementService,
@@ -150,5 +150,33 @@ export class ChatBoxComponent implements OnInit {
     //get the previous chat details
     this.getPreviousChatDetails();
   };
-  public getPreviousChatDetails: any = () => {};
+  public getPreviousChatDetails: any = () => {
+    let previousChat =
+      this.messageList.length > 0 ? this.messageList.slice() : [];
+
+    //call the paginated api
+    this.socketService
+      .getChatBetweenUsers(
+        this.userInfo.userId,
+        this.recieverId,
+        this.pageValue * 10
+      )
+      .subscribe((paginatedChat) => {
+        paginatedChat.status === 200
+          ? this.messageList.concat(previousChat)
+          : (this.messageList = previousChat) &&
+            this.toaster.open({
+              text: 'No Message Available',
+              type: 'warning',
+            });
+        this.scrollToTop = false;
+      }),
+      (error) => {
+        console.warn(error.message);
+        this.toaster.open({
+          text: 'Error in fetching chat',
+          type: 'warning',
+        });
+      };
+  };
 }
