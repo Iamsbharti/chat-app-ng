@@ -38,7 +38,12 @@
       </ul>
     </div>
     <div class="chatWindow" [hidden]="!loadChatWindow">
-      <p>Chat Window for {{ recieverName }}</p>
+      <div class="chatWindowHeader">Chat Window for {{ recieverName }}</div>
+      <hr style="color: rgba(162, 245, 155, 0.815); border: thin;" />
+      <div>messeges</div>
+      <div class="chatWindowFooter">
+        <textarea name="message" placeholder="enter message"></textarea>
+      </div>
     </div>
   </div>
 </div>

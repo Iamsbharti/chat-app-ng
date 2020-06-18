@@ -37,4 +37,20 @@
   border-top-right-radius: 8px;
   border-style: solid;
   height: 250px;
+  width: 400px;
+  position: relative;
+}
+.chatWindowHeader {
+  margin-top: 9px;
+  text-align: center;
+  font-weight: bold;
+  color: rgb(2, 24, 119);
+}
+.chatWindowFooter {
+  align-self: stretch;
+  align-content: flex-end;
+  width: 399px;
+}
+textarea {
+  width: 394px;
 }
