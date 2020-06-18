@@ -69,4 +69,10 @@ export class ChatService {
       });
     });
   };
+  //chat-message-sendit
+  /**this event has to be emmited with chat related data */
+  public sendChatMessage = (chatData) => {
+    console.log('emit chat message event', chatData);
+    this.socket.emit('chat-msg', chatData);
+  };
 }
