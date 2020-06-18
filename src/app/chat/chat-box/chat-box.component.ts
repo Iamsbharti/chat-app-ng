@@ -21,6 +21,8 @@ export class ChatBoxComponent implements OnInit {
   public scrollToTop: boolean = true;
   public recieverId: string;
   public recieverName: string;
+  public userList = [];
+  public pageValue: Number;
   constructor(
     private socketService: ChatService,
     private userServices: UsermanagementService,
@@ -37,6 +39,7 @@ export class ChatBoxComponent implements OnInit {
     this.checkAuthStatus();
     this.verifyUserAuthentication();
     this.getOnlineUsersList();
+    this.getMessageFromUser();
   }
   //check user's login status
   public checkAuthStatus(): any {
@@ -117,5 +120,34 @@ export class ChatBoxComponent implements OnInit {
         this.toaster.open({ text: `${data.senderName} says ${data.message}` });
         this.scrollToTop = false;
       });
+  };
+  //set reciever user i.e. user selected to chat
+  public userSelectedToChat: any = (id, name) => {
+    this.onlineUsers.map((user) => {
+      user.id === id ? (user.chatting = true) : false;
+    });
+    //set cookies for current chatting user
+    Cookie.set('recieverId', id);
+    Cookie.set('recieverName', name);
+
+    ///initialize the reciever's info
+    this.recieverName = name;
+    this.recieverId = id;
+
+    //set the chatbox to empty
+    this.messageList = [];
+
+    //for pagination purpose
+    this.pageValue = 0;
+
+    //if user open up the chat window , set the message as seen
+    let chatDetails = {
+      userId: this.userInfo.userId,
+      senderId: this.recieverId,
+    };
+    this.socketService.markChatAsSeen(chatDetails);
+
+    //get the previous chat details
+    this.getPreviousChatDetails();
   };
 }

@@ -75,4 +75,11 @@ export class ChatService {
     console.log('emit chat message event', chatData);
     this.socket.emit('chat-msg', chatData);
   };
+  //mark chat as seen
+  /**
+   * emit this event when user starts chat with another user
+   */
+  public markChatAsSeen = (chatDetails) => {
+    this.socket.emit('mark-chat-as-seen', chatDetails);
+  };
 }
