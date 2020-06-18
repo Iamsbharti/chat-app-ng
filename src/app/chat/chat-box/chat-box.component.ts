@@ -3,6 +3,9 @@ import { ChatService } from '../chat.service';
 import { Cookie } from 'ng2-cookies';
 import { UsermanagementService } from 'src/app/user/usermanagement.service';
 import { Router } from '@angular/router';
+import { ToastConfig, Toaster } from 'ngx-toast-notifications';
+import { type } from 'os';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-chat-box',
@@ -19,7 +22,8 @@ export class ChatBoxComponent implements OnInit {
   constructor(
     private socketService: ChatService,
     private userServices: UsermanagementService,
-    private _router: Router
+    private _router: Router,
+    private toaster: Toaster
   ) {}
 
   ngOnInit(): void {
@@ -91,6 +95,8 @@ export class ChatBoxComponent implements OnInit {
         createdOn: new Date(),
       };
       this.socketService.sendChatMessage(messageObject);
+    } else {
+      this.toaster.open({ text: 'can not empty message', type: 'danger' });
     }
   };
 }
