@@ -25,6 +25,7 @@ export class ChatBoxComponent implements OnInit {
   public userList = [];
   public pageValue: any;
   public loadingPreviousChat: boolean = false;
+  public loadChatWindow: boolean = false;
   constructor(
     private socketService: ChatService,
     private userServices: UsermanagementService,
@@ -125,6 +126,7 @@ export class ChatBoxComponent implements OnInit {
   };
   //set reciever user i.e. user selected to chat
   public userSelectedToChat: any = (id, name) => {
+    console.log('userselected', id, name);
     this.onlineUsers.map((user) => {
       user.id === id ? (user.chatting = true) : false;
     });
@@ -151,6 +153,7 @@ export class ChatBoxComponent implements OnInit {
 
     //get the previous chat details
     this.getPreviousChatDetails();
+    this.toggleChatWindow();
   };
   public getPreviousChatDetails: any = () => {
     let previousChat =
@@ -187,5 +190,9 @@ export class ChatBoxComponent implements OnInit {
     this.pageValue++;
     this.scrollToTop = true;
     this.getPreviousChatDetails();
+  };
+  //toogle chat window
+  public toggleChatWindow: any = () => {
+    this.loadChatWindow = this.loadChatWindow ? false : true;
   };
 }

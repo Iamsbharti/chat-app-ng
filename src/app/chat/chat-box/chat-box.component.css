@@ -23,4 +23,18 @@
 .username {
   margin-left: 15px;
   font-weight: bolder;
+  transition: ease-in;
+}
+.username:hover {
+  color: black;
+  position: left;
+  cursor: pointer;
+}
+.chatWindow {
+  float: right;
+  border-color: whitesmoke;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-style: solid;
+  height: 250px;
 }

@@ -29,9 +29,16 @@
     <div class="userlist" [hidden]="!showOnlineUsers">
       <ul class="list-group" *ngFor="let user of onlineUsers">
         <div class="usersDiv">
-          <span class="username">{{ user.name }}</span>
+          <span
+            class="username"
+            (click)="userSelectedToChat(user.userId, user.name)"
+            >{{ user.name }}</span
+          >
         </div>
       </ul>
+    </div>
+    <div class="chatWindow" [hidden]="!loadChatWindow">
+      <p>Chat Window for {{ recieverName }}</p>
     </div>
   </div>
 </div>
