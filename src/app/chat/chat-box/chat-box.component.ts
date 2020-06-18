@@ -4,6 +4,7 @@ import { Cookie } from 'ng2-cookies';
 import { UsermanagementService } from 'src/app/user/usermanagement.service';
 import { Router } from '@angular/router';
 import { ToastConfig, Toaster } from 'ngx-toast-notifications';
+import { HashLocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-chat-box',
@@ -23,6 +24,7 @@ export class ChatBoxComponent implements OnInit {
   public recieverName: string;
   public userList = [];
   public pageValue: any;
+  public loadingPreviousChat: boolean = false;
   constructor(
     private socketService: ChatService,
     private userServices: UsermanagementService,
@@ -178,5 +180,12 @@ export class ChatBoxComponent implements OnInit {
           type: 'warning',
         });
       };
+  };
+  //upon load privious chat details click
+  public loadPreviousChat: any = () => {
+    this.loadingPreviousChat = true;
+    this.pageValue++;
+    this.scrollToTop = true;
+    this.getPreviousChatDetails();
   };
 }
