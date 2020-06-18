@@ -8,8 +8,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 })
 export class ChatService {
   private socketUrl = 'https://chatapp.edwisor.com/';
+  private apiUrl = 'https://chatapi.edwisor.com/api/v1/chat/';
   private socket;
-  constructor(private _httpk: HttpClient) {
+  constructor(private _http: HttpClient) {
     //a handshake with server socket and client is now ready to listen for events
     this.socket = io(this.socketUrl);
   }
@@ -81,5 +82,12 @@ export class ChatService {
    */
   public markChatAsSeen = (chatDetails) => {
     this.socket.emit('mark-chat-as-seen', chatDetails);
+  };
+
+  //get paginated message/chat between reciever & sender
+  public getChatBetweenUsers: any = (senderId, recieverId, skip) => {
+    return this._http.get(
+      `${this.apiUrl}get/for/user?senderId=${senderId}?receiverId=${recieverId}?skip=${skip}`
+    );
   };
 }

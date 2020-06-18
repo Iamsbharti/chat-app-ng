@@ -150,4 +150,5 @@ export class ChatBoxComponent implements OnInit {
     //get the previous chat details
     this.getPreviousChatDetails();
   };
+  public getPreviousChatDetails: any = () => {};
 }
