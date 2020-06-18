@@ -55,4 +55,18 @@ export class ChatService {
   public setUserEvent = (authToken) => {
     this.socket.emit('set-user', authToken);
   };
+  //getChatByUserId
+  /**
+   * Listen to userId event ,it refers to the userId of the logged in user
+   * and get all the chat related between a user.
+   * This event ("userId") has to be listened to
+   * identify an individual chat message that has been received.
+   */
+  public getChatByUserId = () => {
+    return Observable.create((observable) => {
+      this.socket.on('userId', (data) => {
+        observable.next(data);
+      });
+    });
+  };
 }
