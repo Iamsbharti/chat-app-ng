@@ -62,9 +62,9 @@ export class ChatService {
    * This event ("userId") has to be listened to
    * identify an individual chat message that has been received.
    */
-  public getChatByUserId = () => {
+  public getChatByUserId = (userId) => {
     return Observable.create((observable) => {
-      this.socket.on('userId', (data) => {
+      this.socket.on(userId, (data) => {
         observable.next(data);
       });
     });

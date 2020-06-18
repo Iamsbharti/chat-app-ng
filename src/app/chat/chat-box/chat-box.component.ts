@@ -4,8 +4,6 @@ import { Cookie } from 'ng2-cookies';
 import { UsermanagementService } from 'src/app/user/usermanagement.service';
 import { Router } from '@angular/router';
 import { ToastConfig, Toaster } from 'ngx-toast-notifications';
-import { type } from 'os';
-import { error } from 'protractor';
 
 @Component({
   selector: 'app-chat-box',
@@ -19,6 +17,10 @@ export class ChatBoxComponent implements OnInit {
   public onlineUsers: any;
   public showOnlineUsers = false;
   public messageText: string;
+  public messageList = [];
+  public scrollToTop: boolean = true;
+  public recieverId: string;
+  public recieverName: string;
   constructor(
     private socketService: ChatService,
     private userServices: UsermanagementService,
@@ -95,8 +97,25 @@ export class ChatBoxComponent implements OnInit {
         createdOn: new Date(),
       };
       this.socketService.sendChatMessage(messageObject);
+      this.pushToChatWindow(messageObject);
     } else {
       this.toaster.open({ text: 'can not empty message', type: 'danger' });
     }
+  };
+  //display chat in chat window
+  public pushToChatWindow: any = (message) => {
+    this.messageText = '';
+    this.messageList.push(message);
+    this.scrollToTop = false;
+  };
+  //recieve message
+  public getMessageFromUser: any = () => {
+    this.socketService
+      .getChatByUserId(this.userInfo.userId)
+      .subscribe((data) => {
+        this.recieverId === data.senderId ? this.messageList.push(data) : '';
+        this.toaster.open({ text: `${data.senderName} says ${data.message}` });
+        this.scrollToTop = false;
+      });
   };
 }
