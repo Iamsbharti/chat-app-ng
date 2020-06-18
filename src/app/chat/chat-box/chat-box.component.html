@@ -40,9 +40,19 @@
     <div class="chatWindow" [hidden]="!loadChatWindow">
       <div class="chatWindowHeader">Chat Window for {{ recieverName }}</div>
       <hr style="color: rgba(162, 245, 155, 0.815); border: thin;" />
-      <div>messeges</div>
+      <div class="chatList" *ngFor="let msg of messageList">
+        <div>{{ msg }}</div>
+      </div>
       <div class="chatWindowFooter">
-        <textarea name="message" placeholder="enter message"></textarea>
+        <form>
+          <textarea
+            autofocus
+            name="message"
+            placeholder="enter message"
+            (keypress)="sendChatMessage($event)"
+            [(ngModel)]="messageText"
+          ></textarea>
+        </form>
       </div>
     </div>
   </div>

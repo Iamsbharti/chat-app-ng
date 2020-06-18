@@ -4,7 +4,6 @@ import { Cookie } from 'ng2-cookies';
 import { UsermanagementService } from 'src/app/user/usermanagement.service';
 import { Router } from '@angular/router';
 import { ToastConfig, Toaster } from 'ngx-toast-notifications';
-import { HashLocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-chat-box',
@@ -18,7 +17,7 @@ export class ChatBoxComponent implements OnInit {
   public onlineUsers: any;
   public showOnlineUsers = false;
   public messageText: string;
-  public messageList = [];
+  public messageList = ['hi', 'there'];
   public scrollToTop: boolean = true;
   public recieverId: string;
   public recieverName: string;
@@ -87,12 +86,15 @@ export class ChatBoxComponent implements OnInit {
   }
   //send message on enter press
   public sendChatMessage: any = (event: any) => {
-    if (event.keyCode === 13) {
+    if (event.keyCode !== undefined && event.keyCode === 13) {
+      console.log('enter invoked', event.keyCode);
       this.sendMessage();
     }
   };
   public sendMessage: any = () => {
+    console.log('sending message');
     let { firstName, lastName, userId } = this.userInfo;
+    console.log(firstName, lastName, userId);
     if (this.messageText) {
       let messageObject = {
         sendName: firstName + ' ' + lastName,
