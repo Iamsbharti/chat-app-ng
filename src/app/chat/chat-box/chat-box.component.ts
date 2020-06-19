@@ -37,6 +37,19 @@ export class ChatBoxComponent implements OnInit {
     this.userInfo = this.userServices.getAuthUserInfo();
     this.authToken = Cookie.get('authToken');
 
+    //retain recievers name,id upon page refresh
+    this.recieverName = Cookie.get('recieverName');
+    this.recieverId = Cookie.get('recieverId');
+    //call userSelectedTochat
+    /*if (
+      this.recieverId !== null ||
+      this.recieverId !== '' ||
+      this.recieverId !== undefined
+    ) {
+      console.log('page refresh call');
+      this.userSelectedToChat(this.recieverId, this.recieverName);
+    }
+    */
     this.showOnlineUsers = false;
     this.checkAuthStatus();
     this.verifyUserAuthentication();
@@ -95,17 +108,18 @@ export class ChatBoxComponent implements OnInit {
     console.log('sending message');
     let { firstName, lastName, userId } = this.userInfo;
     console.log(firstName, lastName, userId);
+    console.log(this.messageText);
     if (this.messageText) {
       let messageObject = {
         sendName: firstName + ' ' + lastName,
         senderId: userId,
-        receiverName: '',
-        receiverId: '',
+        receiverName: this.recieverName,
+        receiverId: this.recieverId,
         message: this.messageText,
         createdOn: new Date(),
       };
       this.socketService.sendChatMessage(messageObject);
-      this.pushToChatWindow(messageObject);
+      this.pushToChatWindow(messageObject.message);
     } else {
       this.toaster.open({ text: 'can not empty message', type: 'danger' });
     }
@@ -158,17 +172,20 @@ export class ChatBoxComponent implements OnInit {
     this.toggleChatWindow();
   };
   public getPreviousChatDetails: any = () => {
+    console.log('load pre chat');
     let previousChat =
       this.messageList.length > 0 ? this.messageList.slice() : [];
-
+    console.log(previousChat);
     //call the paginated api
     this.socketService
       .getChatBetweenUsers(
         this.userInfo.userId,
         this.recieverId,
-        this.pageValue * 10
+        this.pageValue * 10,
+        this.authToken
       )
       .subscribe((paginatedChat) => {
+        console.log(paginatedChat);
         paginatedChat.status === 200
           ? this.messageList.concat(previousChat)
           : (this.messageList = previousChat) &&

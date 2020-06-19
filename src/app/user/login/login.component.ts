@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     };
     this.userService.loginRoute(userInfo).subscribe(
       (response) => {
-        //console.log(data);
+        console.log(response);
         //set display message
         this.loginResponse = response.message;
 

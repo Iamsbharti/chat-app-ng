@@ -9,6 +9,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 export class ChatService {
   private socketUrl = 'https://chatapp.edwisor.com/';
   private apiUrl = 'https://chatapi.edwisor.com/api/v1/chat/';
+  public authToken =
+    'YTczZjFhODdlZWU5ODg1Mzg5MzNkNWQ3M2UxZWU2OGI4YWI3YTE4ODNkZTQwZDBiZWI4MDc0NjA2ODU4NGE2ZTExNTFjZjRmYjBjNmZmNmE3M2NmNTZiMDBjNGE3N2RlZDI5MjI1Njg4NzE3ZmMxY2VlZmEwNGFkYjg2YWQ4NDRhYQ==';
+
   private socket;
   constructor(private _http: HttpClient) {
     //a handshake with server socket and client is now ready to listen for events
@@ -85,9 +88,10 @@ export class ChatService {
   };
 
   //get paginated message/chat between reciever & sender
-  public getChatBetweenUsers: any = (senderId, recieverId, skip) => {
+  public getChatBetweenUsers: any = (senderId, recieverId, skip, authToken) => {
+    console.log('getChatBetweenUsers', senderId, recieverId, skip, authToken);
     return this._http.get(
-      `${this.apiUrl}get/for/user?senderId=${senderId}?receiverId=${recieverId}?skip=${skip}`
+      `${this.apiUrl}get/for/user?senderId=${senderId}&receiverId=${recieverId}&skip=${skip}&authToken=${authToken}`
     );
   };
 }
