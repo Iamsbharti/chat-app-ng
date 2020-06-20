@@ -189,21 +189,17 @@ export class ChatBoxComponent implements OnInit {
       .subscribe((paginatedChat) => {
         console.log('chat-data', paginatedChat);
         //flatten chat array and get message(only)
-        let messageArray = [];
-        paginatedChat.status === 200 &&
-          paginatedChat.data.forEach((chatObj) => {
-            console.log('ele', chatObj.message);
-            messageArray.push(chatObj.message);
-          });
+
         //console.log(this.messageList.concat(messageArray));
         paginatedChat.status === 200
-          ? this.messageList.concat(messageArray)
+          ? (this.messageList = paginatedChat.data.concat(previousChat))
           : (this.messageList = previousChat) &&
             this.toaster.open({
               text: 'No Message Available',
               type: 'warning',
             });
         this.scrollToTop = false;
+        this.loadingPreviousChat = false;
       }),
       (error) => {
         console.warn(error.message);
@@ -216,6 +212,7 @@ export class ChatBoxComponent implements OnInit {
   };
   //upon load privious chat details click
   public loadPreviousChat: any = () => {
+    console.log('load prev chat');
     this.loadingPreviousChat = true;
     this.pageValue++;
     this.scrollToTop = true;

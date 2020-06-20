@@ -39,20 +39,29 @@
     </div>
     <div class="chatWindow" [hidden]="!loadChatWindow">
       <div class="chatWindowHeader">Chat Window for {{ recieverName }}</div>
-      <hr style="color: rgba(162, 245, 155, 0.815); border: thin;" />
-      <div class="chatList" *ngFor="let msg of messageList">
-        <div>{{ msg }}</div>
-      </div>
-      <div class="chatWindowFooter">
-        <form>
-          <textarea
-            autofocus
-            name="message"
-            placeholder="enter message"
-            (keypress)="sendChatMessage($event)"
-            [(ngModel)]="messageText"
-          ></textarea>
-        </form>
+      <ul>
+        <li class="prevChat">
+          <span (click)="loadPreviousChat()">Load Previous Chat</span>
+          <br />
+          <span *ngIf="loadingPreviousChat">Loading...</span>
+        </li>
+        <li class="messageChain" *ngFor="let message of messageList">
+          <div
+            class="message-data"
+            [ngClass]="{ 'align-right': message.senderId == userInfo.userId }"
+          ></div>
+        </li>
+      </ul>
+      <div class="chatFooter bg-transparent">
+        <textarea
+          class="bg-transparent"
+          autofocus
+          name="message"
+          placeholder="enter message"
+          (keypress)="sendChatMessage($event)"
+          [(ngModel)]="messageText"
+          rows="3"
+        ></textarea>
       </div>
     </div>
   </div>
