@@ -50,8 +50,32 @@
             class="message-data"
             [ngClass]="{ 'align-right': message.senderId == userInfo.userId }"
           >
-            <span class="message">{{ message.message }}</span>
-            <span class="message-date"></span>
+            <span class="message-date">{{
+              message.createdOn | date: "medium"
+            }}</span>
+            <span
+              class="reciever-msg"
+              *ngIf="message.senderId !== userInfo.userId"
+            >
+              <i><img src="/assets/icons8-checked-user-male-96.png" /></i
+              >{{ message.senderName }}
+            </span>
+            <span
+              class="sender-msg"
+              *ngIf="message.senderName === userInfo.userId"
+            >
+              <i><img src="/assets/icons8-add-user-male-128.png" /></i
+              >{{ message.senderName }}
+            </span>
+          </div>
+          <div
+            class="message"
+            [ngClass]="{
+              'right users-message': message.senderId === userInfo.userId,
+              'left sender-message': message.senderId !== userInfo.userId
+            }"
+          >
+            {{ message.message }}
           </div>
         </li>
       </ul>

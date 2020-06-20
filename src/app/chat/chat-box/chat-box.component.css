@@ -80,3 +80,28 @@ li {
 .aligh-left {
   text-align: left;
 }
+.right {
+  float: right;
+  background-color: #94c2ed;
+}
+.left {
+  float: left;
+  background-color: #86bb71;
+}
+.message-date {
+  color: rgb(247, 233, 233);
+  font-weight: lighter;
+  font-variant: small-caps;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-style: oblique;
+}
+.message-data img {
+  width: 12px;
+  height: 12px;
+}
+.message {
+  border-radius: 0 0 0 6px;
+  padding: 4px;
+  margin: 10px;
+}
