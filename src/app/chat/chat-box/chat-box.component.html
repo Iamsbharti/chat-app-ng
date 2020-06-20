@@ -49,7 +49,10 @@
           <div
             class="message-data"
             [ngClass]="{ 'align-right': message.senderId == userInfo.userId }"
-          ></div>
+          >
+            <span class="message">{{ message.message }}</span>
+            <span class="message-date"></span>
+          </div>
         </li>
       </ul>
       <div class="chatFooter bg-transparent">
