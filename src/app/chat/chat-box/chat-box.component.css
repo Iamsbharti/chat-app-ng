@@ -41,14 +41,16 @@
   position: relative;
 }
 .chatWindowHeader {
+  display: flex;
+  justify-content: center;
   margin-top: 9px;
   text-align: center;
   font-weight: bold;
   color: rgb(2, 24, 119);
 }
 .chatWindowFooter {
-  align-self: stretch;
-  align-content: flex-end;
+  display: flex;
+  align-items: flex-end;
   width: 399px;
 }
 textarea {

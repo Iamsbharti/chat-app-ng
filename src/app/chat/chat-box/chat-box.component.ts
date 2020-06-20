@@ -156,7 +156,7 @@ export class ChatBoxComponent implements OnInit {
     this.recieverId = id;
 
     //set the chatbox to empty
-    //this.messageList = [];
+    this.messageList = [];
 
     //for pagination purpose
     this.pageValue = 0;
