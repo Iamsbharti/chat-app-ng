@@ -156,7 +156,7 @@ export class ChatBoxComponent implements OnInit {
     this.recieverId = id;
 
     //set the chatbox to empty
-    this.messageList = [];
+    //this.messageList = [];
 
     //for pagination purpose
     this.pageValue = 0;
@@ -170,6 +170,7 @@ export class ChatBoxComponent implements OnInit {
 
     //get the previous chat details
     this.getPreviousChatDetails();
+    console.log('fetched chat', this.messageList);
     this.toggleChatWindow();
   };
   public getPreviousChatDetails: any = () => {
@@ -186,16 +187,23 @@ export class ChatBoxComponent implements OnInit {
         this.authToken
       )
       .subscribe((paginatedChat) => {
-        console.log('chat-data', Object.entries(paginatedChat.data));
+        console.log('chat-data', paginatedChat);
+        //flatten chat array and get message(only)
+        let messageArray = [];
+        paginatedChat.status === 200 &&
+          paginatedChat.data.forEach((chatObj) => {
+            console.log('ele', chatObj.message);
+            messageArray.push(chatObj.message);
+          });
+        //console.log(this.messageList.concat(messageArray));
         paginatedChat.status === 200
-          ? this.messageList.concat(paginatedChat.data)
+          ? this.messageList.concat(messageArray)
           : (this.messageList = previousChat) &&
             this.toaster.open({
               text: 'No Message Available',
               type: 'warning',
             });
         this.scrollToTop = false;
-        console.log('fetched-chat', this.messageList);
       }),
       (error) => {
         console.warn(error.message);
@@ -204,6 +212,7 @@ export class ChatBoxComponent implements OnInit {
           type: 'warning',
         });
       };
+    console.log('finallist', this.messageList);
   };
   //upon load privious chat details click
   public loadPreviousChat: any = () => {
