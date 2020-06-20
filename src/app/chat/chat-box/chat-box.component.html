@@ -41,7 +41,7 @@
       <div class="chatWindowHeader">Chat Window for {{ recieverName }}</div>
       <hr style="color: rgba(162, 245, 155, 0.815); border: thin;" />
       <div class="chatList" *ngFor="let msg of messageList">
-        <div>{{ msg }}</div>
+        <div>{{ msg.message }}</div>
       </div>
       <div class="chatWindowFooter">
         <form>

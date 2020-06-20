@@ -77,6 +77,7 @@ export class ChatService {
   /**this event has to be emmited with chat related data */
   public sendChatMessage = (chatData) => {
     console.log('emit chat message event', chatData);
+
     this.socket.emit('chat-msg', chatData);
   };
   //mark chat as seen
@@ -89,7 +90,7 @@ export class ChatService {
 
   //get paginated message/chat between reciever & sender
   public getChatBetweenUsers: any = (senderId, recieverId, skip, authToken) => {
-    console.log('getChatBetweenUsers', senderId, recieverId, skip, authToken);
+    console.log('getChatBetweenUsers', senderId, recieverId, skip);
     return this._http.get(
       `${this.apiUrl}get/for/user?senderId=${senderId}&receiverId=${recieverId}&skip=${skip}&authToken=${authToken}`
     );

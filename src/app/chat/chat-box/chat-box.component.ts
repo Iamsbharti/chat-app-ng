@@ -17,7 +17,7 @@ export class ChatBoxComponent implements OnInit {
   public onlineUsers: any;
   public showOnlineUsers = false;
   public messageText: string;
-  public messageList = ['hi', 'there'];
+  public messageList = [];
   public scrollToTop: boolean = true;
   public recieverId: string;
   public recieverName: string;
@@ -50,6 +50,7 @@ export class ChatBoxComponent implements OnInit {
       this.userSelectedToChat(this.recieverId, this.recieverName);
     }
     */
+    console.log(this.messageList);
     this.showOnlineUsers = false;
     this.checkAuthStatus();
     this.verifyUserAuthentication();
@@ -175,7 +176,7 @@ export class ChatBoxComponent implements OnInit {
     console.log('load pre chat');
     let previousChat =
       this.messageList.length > 0 ? this.messageList.slice() : [];
-    console.log(previousChat);
+    console.log('previouschat', previousChat);
     //call the paginated api
     this.socketService
       .getChatBetweenUsers(
@@ -185,15 +186,16 @@ export class ChatBoxComponent implements OnInit {
         this.authToken
       )
       .subscribe((paginatedChat) => {
-        console.log(paginatedChat);
+        console.log('chat-data', Object.entries(paginatedChat.data));
         paginatedChat.status === 200
-          ? this.messageList.concat(previousChat)
+          ? this.messageList.concat(paginatedChat.data)
           : (this.messageList = previousChat) &&
             this.toaster.open({
               text: 'No Message Available',
               type: 'warning',
             });
         this.scrollToTop = false;
+        console.log('fetched-chat', this.messageList);
       }),
       (error) => {
         console.warn(error.message);
