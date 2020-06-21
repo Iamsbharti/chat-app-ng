@@ -1,1 +1,14 @@
-<p>user-details works!</p>
+<div
+  class="crop"
+  [style.color]="userColor ? usercolor : 'white'"
+  [style-background]="userBg ? userBg : 'blue'"
+>
+  {{ firstChar }}
+  <div class="about">
+    {{ userFirstName }}{{ userLastName }}
+    <i *ngIf="messageRead" class="fa fa-circle warning"></i>
+  </div>
+  <div class="status">
+    <i class="fa fa-circle" [ngClass]="userStatus">{{ userStatus }}</i>
+  </div>
+</div>
