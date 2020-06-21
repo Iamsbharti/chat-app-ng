@@ -112,7 +112,7 @@ export class ChatBoxComponent implements OnInit {
     console.log(this.messageText);
     if (this.messageText) {
       let messageObject = {
-        sendName: firstName + ' ' + lastName,
+        senderName: firstName + ' ' + lastName,
         senderId: userId,
         receiverName: this.recieverName,
         receiverId: this.recieverId,
@@ -120,15 +120,17 @@ export class ChatBoxComponent implements OnInit {
         createdOn: new Date(),
       };
       this.socketService.sendChatMessage(messageObject);
-      this.pushToChatWindow(messageObject.message);
+      this.pushToChatWindow(messageObject);
     } else {
       this.toaster.open({ text: 'can not empty message', type: 'danger' });
     }
   };
   //display chat in chat window
   public pushToChatWindow: any = (message) => {
+    console.log('push to window', message);
     this.messageText = '';
     this.messageList.push(message);
+    console.log(this.messageList);
     this.scrollToTop = false;
   };
   //recieve message

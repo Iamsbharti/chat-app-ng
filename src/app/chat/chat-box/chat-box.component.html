@@ -39,7 +39,7 @@
     </div>
     <div class="chatWindow" [hidden]="!loadChatWindow">
       <div class="chatWindowHeader">Chat Window for {{ recieverName }}</div>
-      <ul>
+      <ul *ngIf="recieverName">
         <li class="prevChat">
           <span (click)="loadPreviousChat()">Load Previous Chat</span>
           <br />
