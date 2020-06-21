@@ -37,7 +37,6 @@
   border-top-right-radius: 8px;
   border-style: solid;
   height: 250px;
-  width: 400px;
   position: relative;
   overflow-y: scroll;
 }
@@ -49,6 +48,7 @@
   font-weight: bold;
   border-bottom: 5px solid rgb(185, 175, 27);
   color: rgb(2, 24, 119);
+  position: relative;
 }
 .chatWindow .chatWindowFooter {
   display: flex;
@@ -82,26 +82,47 @@ li {
 }
 .right {
   float: right;
-  background-color: #94c2ed;
 }
 .left {
   float: left;
-  background-color: #86bb71;
 }
 .message-date {
+  display: flex;
   color: rgb(247, 233, 233);
   font-weight: lighter;
   font-variant: small-caps;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-style: oblique;
+  font-size: 9px;
 }
-.message-data img {
-  width: 12px;
-  height: 12px;
+.message-date img {
+  display: flex;
+  width: 40px;
+  height: 40px;
 }
 .message {
-  border-radius: 0 0 0 6px;
+  display: flex;
   padding: 4px;
   margin: 10px;
+}
+.users-message {
+  float: right;
+  background-color: #94c2ed;
+  border-radius: 0 0 0 8px;
+}
+.sender-message {
+  float: left;
+  background-color: #86bb71;
+  border-radius: 8px 0 0 0;
+  position: relative;
+}
+.reciever-icon {
+  float: left;
+}
+.sender-icon {
+  float: right;
+}
+.online {
+  color: #86bb71;
 }

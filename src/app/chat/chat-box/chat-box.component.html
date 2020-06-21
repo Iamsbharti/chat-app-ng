@@ -47,25 +47,24 @@
         </li>
         <li class="messageChain" *ngFor="let message of messageList">
           <div
-            class="message-data"
-            [ngClass]="{ 'align-right': message.senderId == userInfo.userId }"
+            class="message-date"
+            [ngClass]="{
+              right: message.senderId === userInfo.userId,
+              left: message.senderId !== userInfo.userId
+            }"
           >
-            <span class="message-date">{{
-              message.createdOn | date: "medium"
-            }}</span>
+            <span>{{ message.createdOn | date: "short" }}</span>
             <span
-              class="reciever-msg"
+              class="reciever-icon"
               *ngIf="message.senderId !== userInfo.userId"
             >
-              <i><img src="/assets/icons8-checked-user-male-96.png" /></i
-              >{{ message.senderName }}
+              <i class="fa fa-circle online"></i>{{ message.senderName }}
             </span>
             <span
-              class="sender-msg"
-              *ngIf="message.senderName === userInfo.userId"
+              class="sender-icon"
+              *ngIf="message.senderId === userInfo.userId"
             >
-              <i><img src="/assets/icons8-add-user-male-128.png" /></i
-              >{{ message.senderName }}
+              <i class="fa fa-circle online"></i>{{ message.senderName }}
             </span>
           </div>
           <div
