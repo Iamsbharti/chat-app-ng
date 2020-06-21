@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewContainerRef,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Cookie } from 'ng2-cookies';
 import { UsermanagementService } from 'src/app/user/usermanagement.service';
@@ -11,6 +17,10 @@ import { ToastConfig, Toaster } from 'ngx-toast-notifications';
   styleUrls: ['./chat-box.component.css'],
 })
 export class ChatBoxComponent implements OnInit {
+  //scroll postion
+  @ViewChild('scrollMe', { read: ElementRef })
+  public scrollMe: ElementRef;
+
   public userInfo: any;
   public authToken: string;
   public disconnectedSocket: boolean;
@@ -18,7 +28,7 @@ export class ChatBoxComponent implements OnInit {
   public showOnlineUsers = false;
   public messageText: string;
   public messageList = [];
-  public scrollToTop: boolean = true;
+  public scrollToTop: boolean = false;
   public recieverId: string;
   public recieverName: string;
   public userList = [];
