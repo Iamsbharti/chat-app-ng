@@ -53,7 +53,8 @@
               left: message.senderId !== userInfo.userId
             }"
           >
-            <span>{{ message.createdOn | date: "short" }}</span>
+            <span>{{ message.createdOn | date: "short" }}</span
+            >&nbsp; &nbsp;
             <span
               class="reciever-icon"
               *ngIf="message.senderId !== userInfo.userId"
