@@ -28,7 +28,14 @@
     </button>
     <div class="userlist" [hidden]="!showOnlineUsers">
       <ul class="list-group">
-        <li></li>
+        <li
+          class="clearfix cursorPointer"
+          [ngClass]="{ activeChat: user.chatting == true }"
+          (click)="userSelectedToChat(user.id, user.name)"
+          *ngFor="let user of onlineUsers"
+        >
+          <div class="usersDiv">{{ user }}</div>
+        </li>
       </ul>
     </div>
     <div
