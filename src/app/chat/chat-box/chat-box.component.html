@@ -34,7 +34,7 @@
           (click)="userSelectedToChat(user.id, user.name)"
           *ngFor="let user of onlineUsers"
         >
-          <div class="usersDiv">{{ user }}</div>
+          <div class="usersDiv">{{ user.name }}</div>
         </li>
       </ul>
     </div>
