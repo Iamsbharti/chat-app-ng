@@ -18,7 +18,6 @@
 .usersDiv {
   margin-top: 10px;
   color: whitesmoke;
-  text-transform: capitalize;
   margin-left: 15px;
   font-weight: bolder;
   cursor: pointer;
@@ -140,4 +139,9 @@ li {
   content: " ";
   clear: both;
   height: 0;
+}
+.userPresence {
+  float: left;
+  padding: 0.7em 0.2em;
+  color: white;
 }

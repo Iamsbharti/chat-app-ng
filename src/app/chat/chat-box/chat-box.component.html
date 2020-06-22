@@ -29,12 +29,18 @@
     <div class="userlist" [hidden]="!showOnlineUsers">
       <ul class="list-group">
         <li
-          class="usersDiv clearfix"
           (click)="userSelectedToChat(user.userId, user.name)"
           *ngFor="let user of onlineUsers"
         >
-          <div [ngClass]="{ activeChat: user.chatting == true }">
-            {{ user.name }}
+          <div
+            class="usersDiv"
+            [ngClass]="{ activeChat: user.chatting == true }"
+          >
+            <app-user-details
+              [userName]="user.name"
+              [userStatus]="'online'"
+              [messageRead]="user.unread"
+            ></app-user-details>
           </div>
         </li>
       </ul>

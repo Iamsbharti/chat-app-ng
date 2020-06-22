@@ -14,8 +14,7 @@ import {
 })
 export class UserDetailsComponent implements OnInit {
   constructor() {}
-  @Input() userFirstName: any;
-  @Input() userLastName: String;
+  @Input() userName: any;
   @Input() userStatus: String;
   @Input() messageRead: String;
 
@@ -24,6 +23,6 @@ export class UserDetailsComponent implements OnInit {
   public firstChar: String;
 
   ngOnInit(): void {
-    this.firstChar = this.userFirstName[0];
+    this.firstChar = this.userName[0];
   }
 }

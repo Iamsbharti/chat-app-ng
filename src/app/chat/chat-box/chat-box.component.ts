@@ -56,11 +56,11 @@ export class ChatBoxComponent implements OnInit {
       this.recieverId !== '' ||
       this.recieverId !== undefined
     ) {
-      console.log('page refresh call');
+      ////console.log('page refresh call');
       this.userSelectedToChat(this.recieverId, this.recieverName);
     }
     */
-    console.log(this.messageList);
+    ////console.log(this.messageList);
     this.showOnlineUsers = false;
     this.checkAuthStatus();
     this.verifyUserAuthentication();
@@ -92,7 +92,7 @@ export class ChatBoxComponent implements OnInit {
   public getOnlineUsersList(): any {
     this.socketService.getOnlineUsersList().subscribe((usersList) => {
       this.onlineUsers = [];
-      //console.log(usersList);
+      //////console.log(usersList);
       for (let user in usersList) {
         let temp = {
           userId: user,
@@ -111,15 +111,15 @@ export class ChatBoxComponent implements OnInit {
   //send message on enter press
   public sendChatMessage: any = (event: any) => {
     if (event.keyCode !== undefined && event.keyCode === 13) {
-      console.log('enter invoked', event.keyCode);
+      ////console.log('enter invoked', event.keyCode);
       this.sendMessage();
     }
   };
   public sendMessage: any = () => {
-    console.log('sending message');
+    ////console.log('sending message');
     let { firstName, lastName, userId } = this.userInfo;
-    console.log(firstName, lastName, userId);
-    console.log(this.messageText);
+    ////console.log(firstName, lastName, userId);
+    ////console.log(this.messageText);
     if (this.messageText) {
       let messageObject = {
         senderName: firstName + ' ' + lastName,
@@ -137,10 +137,10 @@ export class ChatBoxComponent implements OnInit {
   };
   //display chat in chat window
   public pushToChatWindow: any = (message) => {
-    console.log('push to window', message);
+    ////console.log('push to window', message);
     this.messageText = '';
     this.messageList.push(message);
-    console.log(this.messageList);
+    ////console.log(this.messageList);
     this.scrollToTop = false;
   };
   //recieve message
@@ -155,9 +155,9 @@ export class ChatBoxComponent implements OnInit {
   };
   //set reciever user i.e. user selected to chat
   public userSelectedToChat: any = (id, name) => {
-    console.log('userselected', id, name);
+    ////console.log('userselected', id, name);
     this.onlineUsers.map((user) => {
-      console.log(id, user.id);
+      ////console.log(id, user.id);
       user.userId === id ? (user.chatting = true) : (user.chatting = false);
     });
     //set cookies for current chatting user
@@ -183,15 +183,15 @@ export class ChatBoxComponent implements OnInit {
 
     //get the previous chat details
     this.getPreviousChatDetails();
-    console.log('fetched chat', this.messageList);
+    ////console.log('fetched chat', this.messageList);
     this.toggleChatWindow();
-    console.log('userselected', this.onlineUsers[1]);
+    ////console.log('userselected', this.onlineUsers[1]);
   };
   public getPreviousChatDetails: any = () => {
-    console.log('load pre chat');
+    ////console.log('load pre chat');
     let previousChat =
       this.messageList.length > 0 ? this.messageList.slice() : [];
-    console.log('previouschat', previousChat);
+    ////console.log('previouschat', previousChat);
     //call the paginated api
     this.socketService
       .getChatBetweenUsers(
@@ -201,10 +201,10 @@ export class ChatBoxComponent implements OnInit {
         this.authToken
       )
       .subscribe((paginatedChat) => {
-        console.log('chat-data', paginatedChat);
+        ////console.log('chat-data', paginatedChat);
         //flatten chat array and get message(only)
 
-        //console.log(this.messageList.concat(messageArray));
+        //////console.log(this.messageList.concat(messageArray));
         paginatedChat.status === 200
           ? (this.messageList = paginatedChat.data.concat(previousChat))
           : (this.messageList = previousChat) &&
@@ -222,11 +222,11 @@ export class ChatBoxComponent implements OnInit {
           type: 'warning',
         });
       };
-    console.log('finallist', this.messageList);
+    ////console.log('finallist', this.messageList);
   };
   //upon load privious chat details click
   public loadPreviousChat: any = () => {
-    console.log('load prev chat');
+    ////console.log('load prev chat');
     this.loadingPreviousChat = true;
     this.pageValue++;
     this.scrollToTop = true;
