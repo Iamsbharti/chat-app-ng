@@ -27,14 +27,8 @@
       <span class="badge badge-light">{{ onlineUsers.length }}</span>
     </button>
     <div class="userlist" [hidden]="!showOnlineUsers">
-      <ul class="list-group" *ngFor="let user of onlineUsers">
-        <div class="usersDiv">
-          <span
-            class="username"
-            (click)="userSelectedToChat(user.userId, user.name)"
-            >{{ user.name }}</span
-          >
-        </div>
+      <ul class="list-group">
+        <li></li>
       </ul>
     </div>
     <div

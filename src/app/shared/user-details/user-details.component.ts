@@ -18,9 +18,9 @@ export class UserDetailsComponent implements OnInit {
   @Input() userLastName: String;
   @Input() userStatus: String;
   @Input() messageRead: String;
-  @Input() userBg: String;
-  @Input() userColor: String;
 
+  public userBg: String = '';
+  public userColor: String = '';
   public firstChar: String;
 
   ngOnInit(): void {
