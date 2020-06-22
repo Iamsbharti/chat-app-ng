@@ -98,7 +98,7 @@ export class ChatBoxComponent implements OnInit {
           userId: user,
           name: usersList[user],
           unread: 0,
-          chatting: 0,
+          chatting: false,
         };
         user !== this.userInfo['userId'] ? this.onlineUsers.push(temp) : '';
       }
@@ -157,7 +157,8 @@ export class ChatBoxComponent implements OnInit {
   public userSelectedToChat: any = (id, name) => {
     console.log('userselected', id, name);
     this.onlineUsers.map((user) => {
-      user.id === id ? (user.chatting = true) : false;
+      console.log(id, user.id);
+      user.userId === id ? (user.chatting = true) : (user.chatting = false);
     });
     //set cookies for current chatting user
     Cookie.set('recieverId', id);
@@ -184,6 +185,7 @@ export class ChatBoxComponent implements OnInit {
     this.getPreviousChatDetails();
     console.log('fetched chat', this.messageList);
     this.toggleChatWindow();
+    console.log('userselected', this.onlineUsers[1]);
   };
   public getPreviousChatDetails: any = () => {
     console.log('load pre chat');

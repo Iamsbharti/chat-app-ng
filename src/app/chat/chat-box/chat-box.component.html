@@ -29,21 +29,17 @@
     <div class="userlist" [hidden]="!showOnlineUsers">
       <ul class="list-group">
         <li
-          class="clearfix cursorPointer"
-          [ngClass]="{ activeChat: user.chatting == true }"
-          (click)="userSelectedToChat(user.id, user.name)"
+          class="usersDiv clearfix"
+          (click)="userSelectedToChat(user.userId, user.name)"
           *ngFor="let user of onlineUsers"
         >
-          <div class="usersDiv">{{ user.name }}</div>
+          <div [ngClass]="{ activeChat: user.chatting == true }">
+            {{ user.name }}
+          </div>
         </li>
       </ul>
     </div>
-    <div
-      class="chatWindow"
-      #scrollMe
-      [scrollTop]="scrollToTop ? 0 : scrollMe.scrollHeight"
-      [hidden]="!loadChatWindow"
-    >
+    <div class="chatWindow" #scrollMe [hidden]="!loadChatWindow">
       <div class="chatWindowHeader">Chat Window for {{ recieverName }}</div>
       <ul *ngIf="recieverName">
         <li class="prevChat">

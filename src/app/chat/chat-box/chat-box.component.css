@@ -18,7 +18,10 @@
 .usersDiv {
   margin-top: 10px;
   color: whitesmoke;
-  border-left: 5px solid green;
+  text-transform: capitalize;
+  margin-left: 15px;
+  font-weight: bolder;
+  cursor: pointer;
 }
 .username {
   margin-left: 15px;
@@ -125,4 +128,16 @@ li {
 }
 .online {
   color: #86bb71;
+}
+.activeChat {
+  color: #010314f6;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
 }
