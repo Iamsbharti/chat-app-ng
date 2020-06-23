@@ -89,7 +89,9 @@
               'left sender-message': message.senderId !== userInfo.userId
             }"
           >
-            {{ message.message }}
+            {{
+              message.message | removeSpecialChar: "#" | removeSpecialChar: "$"
+            }}
           </div>
         </li>
       </ul>

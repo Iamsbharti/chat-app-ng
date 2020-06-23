@@ -8,9 +8,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChatService } from './chat.service';
 import { SharedModule } from '../shared/shared.module';
 import { UserDetailsComponent } from '../../app/shared/user-details/user-details.component';
+import { RemoveSpecialCharPipe } from '../customPipe/remove-special-char.pipe';
 
 @NgModule({
-  declarations: [ChatBoxComponent],
+  declarations: [ChatBoxComponent, RemoveSpecialCharPipe],
   imports: [
     CommonModule,
     FormsModule,
