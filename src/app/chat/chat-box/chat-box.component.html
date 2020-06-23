@@ -46,7 +46,6 @@
       </ul>
     </div>
     <div class="chatWindow" #scrollMe [hidden]="!loadChatWindow">
-      <app-window-first-char></app-window-first-char>
       <div class="chatWindowHeader">Chat Window for {{ recieverName }}</div>
       <ul *ngIf="recieverName">
         <li class="prevChat">
