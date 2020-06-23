@@ -236,4 +236,8 @@ export class ChatBoxComponent implements OnInit {
   public toggleChatWindow: any = () => {
     this.loadChatWindow = this.loadChatWindow ? false : true;
   };
+  //toast /emit reciever's name upon child emit
+  public emitRecieversName: any = (name: String) => {
+    this.toaster.open({ text: `Chatting with ${name}`, type: 'success' });
+  };
 }

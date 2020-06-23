@@ -7,6 +7,11 @@ import { WindowFirstCharComponent } from './window-first-char/window-first-char.
 @NgModule({
   declarations: [UserDetailsComponent, WindowFirstCharComponent],
   imports: [CommonModule],
-  exports: [FormsModule, UserDetailsComponent, CommonModule],
+  exports: [
+    FormsModule,
+    UserDetailsComponent,
+    WindowFirstCharComponent,
+    CommonModule,
+  ],
 })
 export class SharedModule {}

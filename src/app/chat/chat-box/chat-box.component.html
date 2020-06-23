@@ -46,7 +46,13 @@
       </ul>
     </div>
     <div class="chatWindow" #scrollMe [hidden]="!loadChatWindow">
-      <div class="chatWindowHeader">Chat Window for {{ recieverName }}</div>
+      <app-window-first-char
+        [name]="recieverName"
+        [userColor]="'white'"
+        [userbg]="'green'"
+        (notify)="emitRecieversName($event)"
+      ></app-window-first-char>
+      <div class="chatWindowHeader">{{ recieverName }}</div>
       <ul *ngIf="recieverName">
         <li class="prevChat">
           <span (click)="loadPreviousChat()">Load Previous Chat</span>

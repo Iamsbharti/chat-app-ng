@@ -44,11 +44,9 @@
 }
 .chatWindowHeader {
   display: flex;
-  justify-content: center;
   margin-top: 9px;
   text-align: center;
   font-weight: bold;
-  border-bottom: 5px solid rgb(185, 175, 27);
   color: rgb(2, 24, 119);
   position: relative;
 }
@@ -66,7 +64,7 @@ textarea {
   cursor: pointer;
 }
 .prevChat {
-  color: rgb(160, 88, 118);
+  color: #92959e;
   font-weight: lighter;
   font-style: italic;
   justify-content: center;
