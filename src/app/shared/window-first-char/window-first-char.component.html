@@ -1,1 +1,8 @@
-<p>window-first-char works!</p>
+<div
+  (click)="currentUserClick()"
+  class="crop"
+  [style.color]="userColor ? userColor : 'white'"
+  [style.background]="userbg ? userbg : 'blue'"
+>
+  {{ firstChar }}
+</div>

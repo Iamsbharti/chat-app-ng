@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { ChatService } from './chat.service';
 import { SharedModule } from '../shared/shared.module';
-import { UserDetailsComponent } from '../../app/shared/user-details/user-details.component';
 
 @NgModule({
   declarations: [ChatBoxComponent],
