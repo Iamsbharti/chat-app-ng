@@ -62,13 +62,13 @@ export class ChatBoxComponent implements OnInit {
     */
     ////console.log(this.messageList);
     this.showOnlineUsers = false;
-    this.checkAuthStatus();
+    //this.checkAuthStatus();
     this.verifyUserAuthentication();
     this.getOnlineUsersList();
     this.getMessageFromUser();
   }
-  //check user's login status
-  public checkAuthStatus(): any {
+  //check user's login status currently being handled by RouteGuard
+  /*public checkAuthStatus(): any {
     if (
       this.authToken === '' ||
       this.authToken === null ||
@@ -79,7 +79,7 @@ export class ChatBoxComponent implements OnInit {
     } else {
       return true;
     }
-  }
+  }*/
   //verify the user with authToken
   public verifyUserAuthentication(): any {
     this.socketService.verifyUser().subscribe((data) => {
