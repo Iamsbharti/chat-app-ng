@@ -10,4 +10,7 @@
     {{ userName }}
     <i *ngIf="messageRead" class="fa fa-circle warning"></i>
   </div>
+  <div class="status">
+    <i class="fa fa-circle" [ngClass]="userStatus"></i>{{ userStatus }}
+  </div>
 </div>
