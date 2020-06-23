@@ -10,7 +10,7 @@ import { Cookie } from 'ng2-cookies';
 import { UsermanagementService } from 'src/app/user/usermanagement.service';
 import { Router } from '@angular/router';
 import { ToastConfig, Toaster } from 'ngx-toast-notifications';
-
+import { ChatMessage } from './chatMsg-Interface';
 @Component({
   selector: 'app-chat-box',
   templateUrl: './chat-box.component.html',
@@ -121,7 +121,7 @@ export class ChatBoxComponent implements OnInit {
     ////console.log(firstName, lastName, userId);
     ////console.log(this.messageText);
     if (this.messageText) {
-      let messageObject = {
+      let messageObject: ChatMessage = {
         senderName: firstName + ' ' + lastName,
         senderId: userId,
         receiverName: this.recieverName,
